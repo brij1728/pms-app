@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
+import { Button } from "react-bootstrap";
 import { PropertyForm } from "../PropertyForm";
+import { useHistory } from "react-router-dom";
 
 export const AddProperty: React.FC = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const handleSubmit = (event: any) => {
     event.preventDefault();
   };
@@ -11,21 +13,24 @@ export const AddProperty: React.FC = () => {
     setValue(event.target.value);
   };
 
-  useEffect(() => {
+  const history = useHistory();
 
-  },[value])
+  useEffect(() => {}, [value]);
 
   return (
     <>
-      <div>Add Property</div>
-
-      <PropertyForm
-        name={value}
-        description={""}
-        size={2}
-        onSubmit={() => handleSubmit}
-        onChange={onChange}
-      />
+      <div style={{ float: "left" }}>
+        <Button onClick={() => history.goBack()}>Back</Button>
+      </div>
+      <div>
+        <PropertyForm
+          name={value}
+          description={""}
+          size={""}
+          onSubmit={() => handleSubmit}
+          onChange={onChange}
+        />
+      </div>
     </>
   );
 };
